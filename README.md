@@ -1,4 +1,4 @@
-Loopmachine is a Python script for recording an audio track and playing it back as a loop using modified PyAudio sample scripts and some hacky Tkinter event handling.
+Loopmachine is an interactive Python script for recording an audio track and playing it back as a loop using modified PyAudio sample scripts and some hacky Tkinter event handling.
 
 You'll need to download and install PyAudio from here:
 http://people.csail.mit.edu/hubert/pyaudio/
