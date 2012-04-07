@@ -150,6 +150,12 @@ def stop(event):
     print "stop pressed"
     state = "stop"
 
+def reset(event):
+    global layers, state
+    print "reset pressed"
+    layers = 1
+    state = "stop"
+
 def quit(event):
     print "quitting"
     root.quit()
@@ -163,9 +169,10 @@ frame.bind("3", lambda event, arg=3: record(event, arg))
 frame.bind("4", lambda event, arg=4: record(event, arg))
 frame.bind("p", play)
 frame.bind("s", stop)
+frame.bind("r", reset)
 frame.bind("q", quit)
 frame.pack()
 frame.focus_set()
 Label(frame, fg="white", bg="black", width=24, height=8, anchor=CENTER, font=("monaco", 42), text="Loop Machine").pack()
-Label(frame, fg="white", bg="black", width=24, height=8, anchor=CENTER, font=("monaco", 20), text="space, 1 - Record track 1\n2 - Record track 2\n3 - Record track 3\n4 - Record track 4\np - Play loop\ns - Stop\nq - Quit").pack()
+Label(frame, fg="white", bg="black", width=24, height=9, anchor=CENTER, font=("monaco", 20), text="space, 1 - Record track 1\n2 - Record track 2\n3 - Record track 3\n4 - Record track 4\np - Play loop\ns - Stop\nr - Reset\nq - Quit").pack()
 root.mainloop()
