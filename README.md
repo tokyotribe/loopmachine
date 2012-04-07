@@ -3,6 +3,9 @@ Loopmachine is an interactive Python script for recording an audio track and pla
 You'll need to download and install PyAudio from here:
 http://people.csail.mit.edu/hubert/pyaudio/
 
+Versions:
+loopmachine.py - single-track loop machine (stable)
+loopmachine_mt.py - multi-track loop machine (buggy, WIP)
 
 Released under MIT License
 
