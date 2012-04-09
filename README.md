@@ -1,11 +1,11 @@
-Loopmachine is an interactive Python script for recording an audio track and playing it back as a loop using modified PyAudio sample scripts and some hacky Tkinter event handling.
+Loopmachine is an interactive Python script for recording one or more audio tracks, layering them and playing them back as a loop using modified PyAudio sample scripts and some hacky Tkinter event handling.
 
 You'll need to download and install PyAudio from here:
 http://people.csail.mit.edu/hubert/pyaudio/
 
 Versions:
-loopmachine.py - single-track loop machine (stable)
-loopmachine_mt.py - multi-track loop machine (buggy, WIP)
+loopmachine.py - multi-track loop machine (WIP)
+loopmachine_singletrack.py - single-track loop machine
 
 Released under MIT License
 
