@@ -31,6 +31,7 @@ def record(event, layer):
         return
     else:
         state = "record"
+    var.set("recording layer "+str(layer))
 
     # start recording
     stream = p.open(format = FORMAT,
@@ -79,12 +80,16 @@ def record(event, layer):
     wf.close()
 
     state = "stop"
+    var.set("stop")
+
     if autoplayafterrec:
         play(event)
 
 def play(event):
     global data, state, layers
     state = "play"
+    var.set("playing")
+
     while canPlay():
         print "playing"
         p = pyaudio.PyAudio()
@@ -150,12 +155,14 @@ def stop(event):
     global state
     print "stop pressed"
     state = "stop"
+    var.set("stop")
 
 def reset(event):
     global layers, state
     print "reset pressed"
     layers = 1
     state = "stop"
+    var.set("reset")
 
 def quit(event):
     print "quitting"
@@ -177,22 +184,27 @@ frame.focus_set()
 # Label(frame, fg="white", bg="black", width=24, height=8, anchor=CENTER, font=("helvetica", 42), text="Loop Machine").pack()
 # Label(frame, fg="white", bg="black", width=24, height=9, anchor=CENTER, font=("helvetica", 20), text="space, 1 - Record track 1\n2 - Record track 2\n3 - Record track 3\n4 - Record track 4\np - Play loop\ns - Stop\nr - Reset\nq - Quit").pack()
 Label(frame, fg="white", bg="black", width=24, height=8, anchor=CENTER, font=("helvetica", 42), text="Loop Machine").grid(row=0, columnspan=4)
+
+var = StringVar()
+statelabel = Label(frame, fg="white", bg="black", width=40, height = 3, anchor=CENTER, font=("helvetica", 24), textvariable=var)
+statelabel.grid(row=1, columnspan=4)
+
 rec1b = Label(frame, fg="black", bg="cyan", width=12, height=3, anchor=CENTER, font=("helvetica", 20), text="space, 1\nRec track 1")
-rec1b.grid(row=1, column=0, padx=4, pady=4)
+rec1b.grid(row=2, column=0, padx=4, pady=4)
 rec2b = Label(frame, fg="black", bg="green", width=12, height=3, anchor=CENTER, font=("helvetica", 20), text="2\nRec track 2")
-rec2b.grid(row=1, column=1, padx=4, pady=4)
+rec2b.grid(row=2, column=1, padx=4, pady=4)
 rec3b = Label(frame, fg="black", bg="orange", width=12, height=3, anchor=CENTER, font=("helvetica", 20), text="3\nRec track 3")
-rec3b.grid(row=1, column=2, padx=4, pady=4)
+rec3b.grid(row=2, column=2, padx=4, pady=4)
 rec4b = Label(frame, fg="black", bg="red", width=12, height=3, anchor=CENTER, font=("helvetica", 20), text="4\nRec track 4")
-rec4b.grid(row=1, column=3, padx=4, pady=4)
+rec4b.grid(row=2, column=3, padx=4, pady=4)
 playb = Label(frame, fg="black", bg="dodgerblue", width=12, height=3, anchor=CENTER, font=("helvetica", 20), text="p\nPlay")
-playb.grid(row=2, column=0, padx=4, pady=4)
+playb.grid(row=3, column=0, padx=4, pady=4)
 stopb = Label(frame, fg="black", bg="darkgreen", width=12, height=3, anchor=CENTER, font=("helvetica", 20), text="s\nStop")
-stopb.grid(row=2, column=1, padx=4, pady=4)
+stopb.grid(row=3, column=1, padx=4, pady=4)
 resetb = Label(frame, fg="black", bg="gold", width=12, height=3, anchor=CENTER, font=("helvetica", 20), text="r\nReset")
-resetb.grid(row=2, column=2, padx=4, pady=4)
+resetb.grid(row=3, column=2, padx=4, pady=4)
 quitb = Label(frame, fg="black", bg="darkred", width=12, height=3, anchor=CENTER, font=("helvetica", 20), text="q\nQuit")
-quitb.grid(row=2, column=3, padx=4, pady=4)
+quitb.grid(row=3, column=3, padx=4, pady=4)
 
 if mousecontrol:
     rec1b.bind("<Button-1>", lambda event, arg=1: record(event, arg))
